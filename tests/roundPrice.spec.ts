@@ -23,12 +23,6 @@ describe('test round price function', () => {
     expect(test).toBe(result);
   });
 
-  /*
-    roundPrice(232.10542, '%PRICE% kr') → "232.11 kr"
-    roundPrice(14, '$%PRICE%') → "$14.00"
-    roundPrice(1024.2048, 'USD %PRICE%') → "USD 1024.20 SEK"
-  */
-
     it('test for price rounded up and with two decimals', () => {
       const test = roundPrice(232.10542, '%PRICE% kr');
       const result = "232.11 kr"
@@ -49,7 +43,5 @@ describe('test round price function', () => {
   
       expect(test).toBe(result);
     });
-
-
-
+    
 });
