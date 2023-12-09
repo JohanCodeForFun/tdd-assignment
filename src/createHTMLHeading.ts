@@ -1,6 +1,6 @@
 export const makeHeading = (text: string, headerSize: number) => {
 
-  if (headerSize > 6) {
+  if (headerSize > 6 || headerSize < 1) {
     throw new Error('Headings size is to big! Only heading sizes 1-6 are valid.');
   }
 
