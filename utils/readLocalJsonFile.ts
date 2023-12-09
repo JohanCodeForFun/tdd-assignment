@@ -1,17 +1,20 @@
 import * as fs from 'fs';
-import { User } from '../types/user';
+import { APIResponse } from '../types/APIResponse';
 
-export function readLocalJsonFile(filePath: string): User[] {
+export function readLocalJsonFile<T>(filePath: string): APIResponse<T> {
   try {
     // Read the content of the JSON file synchronously
     const fileContent = fs.readFileSync(filePath, 'utf-8');
 
     // Parse the JSON content
-    const jsonData = JSON.parse(fileContent);
+    const jsonData = JSON.parse(fileContent) as APIResponse<T>;
 
     return jsonData;
-  } catch (error: any) {
-    console.error(`Error reading JSON file: ${error.message}`);
-    throw error;
-  }
-}
+  } catch (error) {
+    if (error instanceof Error) {
+      throw { error: error.message };
+    } else {
+      throw { error: 'Unexpected error occurred.' };
+    }
+  };
+};
